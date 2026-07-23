@@ -1,0 +1,153 @@
+[gd_scene format=3 uid="uid://mxv5r6xesv8g"]
+
+[ext_resource type="Texture2D" uid="uid://wxxyp8hbvi15" path="res://icon.svg" id="2_epypp"]
+[ext_resource type="Script" uid="uid://dbj4fc27antas" path="res://character_body_2d.gd" id="3_0hol4"]
+[ext_resource type="Script" uid="uid://yy8g6d7iupu5" path="res://base_floor.gd" id="3_epypp"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q6r6c"]
+texture = ExtResource("2_epypp")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 8, -8, 8)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:2/0 = 0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:2/0 = 0
+5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, 8, -8, 8)
+6:2/0 = 0
+6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -0.17985916, 1.2590122, 8, 8, -8, 8)
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_kdubu"]
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_q6r6c")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0e48y"]
+noise_type = 3
+frequency = 0.1047
+offset = Vector3(-406.78, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_epypp"]
+noise_type = 3
+frequency = 0.021
+offset = Vector3(0, 67.8, 200)
+fractal_type = 3
+fractal_octaves = 1
+fractal_lacunarity = 7.0
+fractal_gain = 3.5
+fractal_ping_pong_strength = 5.0
+
+[sub_resource type="Curve" id="Curve_epypp"]
+_limits = [-5.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0.055000007, 1.7415733), 0.0, 0.0, 0, 0, Vector2(0.16500002, -0.056179523), 0.0, 0.0, 0, 0, Vector2(0.8600001, -0.39325857), 0.0, 0.0, 0, 0, Vector2(0.8950001, -1.5168543), 0.0, 0.0, 0, 0, Vector2(1, -1.5168543), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Curve" id="Curve_0hol4"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.019999996, 0.19101131), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(0.98, 0.22471917), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e48y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
+size = Vector2(9, 10.5)
+
+[node name="Node2D" type="Node2D" unique_id=1851704148]
+
+[node name="base_floor" type="TileMapLayer" parent="." unique_id=551249002]
+scale = Vector2(0.3944768, 0.3662998)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 2, 0, 0, 0)
+tile_set = SubResource("TileSet_kdubu")
+script = ExtResource("3_epypp")
+MapNoise = SubResource("FastNoiseLite_0e48y")
+HoleNoise = SubResource("FastNoiseLite_epypp")
+elevation_shape = SubResource("Curve_epypp")
+ground_distribution = SubResource("Curve_0hol4")
+threshold = 0.07400000000000007
+diff = 0.963
+
+[node name="Area2D" type="Area2D" parent="." unique_id=547499565]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1544126952]
+position = Vector2(0, 15)
+shape = SubResource("WorldBoundaryShape2D_0e48y")
+debug_color = Color(0.88889194, 0.00027068733, 0.7992865, 0.41960785)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1714800911]
+position = Vector2(0, -52)
+collision_mask = 3
+floor_constant_speed = true
+floor_block_on_wall = false
+floor_max_angle = 1.4067354
+floor_snap_length = 7.5
+script = ExtResource("3_0hol4")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=275101063]
+position = Vector2(5.75, -6.25)
+scale = Vector2(0.08984375, 0.08984375)
+texture = ExtResource("2_epypp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1007964473]
+position = Vector2(5.75, -6)
+shape = SubResource("RectangleShape2D_0e48y")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1715089270]
+zoom = Vector2(0.25, 0.25)

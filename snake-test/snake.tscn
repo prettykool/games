@@ -1,0 +1,141 @@
+[gd_scene format=4 uid="uid://cm0kcidxg4utv"]
+
+[ext_resource type="Script" uid="uid://bmpolryiq0xxq" path="res://snake.gd" id="1_gxkgb"]
+[ext_resource type="Texture2D" uid="uid://bj7m7v2q6iged" path="res://tileset.png" id="2_2x2sd"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_olj5u"]
+resource_name = "colors"
+texture = ExtResource("2_2x2sd")
+texture_region_size = Vector2i(34, 34)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_dw1s1"]
+tile_size = Vector2i(34, 34)
+navigation_layer_0/layers = 1
+custom_data_layer_0/name = "map"
+custom_data_layer_0/type = 28
+custom_data_layer_1/name = ""
+custom_data_layer_1/type = 0
+sources/0 = SubResource("TileSetAtlasSource_olj5u")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gxkgb"]
+texture = ExtResource("2_2x2sd")
+texture_region_size = Vector2i(34, 34)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_2x2sd"]
+tile_size = Vector2i(34, 34)
+sources/0 = SubResource("TileSetAtlasSource_gxkgb")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxkgb"]
+atlas = ExtResource("2_2x2sd")
+region = Rect2(0, 34, 34, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2x2sd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxkgb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2x2sd"]
+atlas = ExtResource("2_2x2sd")
+region = Rect2(136, 0, 34, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_olj5u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2x2sd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D" unique_id=41981667]
+script = ExtResource("1_gxkgb")
+
+[node name="playboard" type="TileMapLayer" parent="." unique_id=393355464]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAABAAAAAAAAAAQAAAAAAAAAAAAAAAUAAAABAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAABAAAAAAAAAAgAAAAAAAAAAAAAAAkAAAABAAAAAAAAAAoAAAAAAAAAAAABAAAAAAABAAAAAAABAAEAAAAAAAAAAAABAAIAAAABAAAAAAABAAMAAAAAAAAAAAABAAQAAAABAAAAAAABAAUAAAAAAAAAAAABAAYAAAABAAAAAAABAAcAAAAAAAAAAAABAAgAAAABAAAAAAABAAkAAAAAAAAAAAABAAoAAAABAAAAAAACAAAAAAAAAAAAAAACAAEAAAABAAAAAAACAAIAAAAAAAAAAAACAAMAAAABAAAAAAACAAQAAAAAAAAAAAACAAUAAAABAAAAAAACAAYAAAAAAAAAAAACAAcAAAABAAAAAAACAAgAAAAAAAAAAAACAAkAAAABAAAAAAACAAoAAAAAAAAAAAADAAAAAAABAAAAAAADAAEAAAAAAAAAAAADAAIAAAABAAAAAAADAAQAAAABAAAAAAADAAUAAAAAAAAAAAADAAYAAAABAAAAAAADAAcAAAAAAAAAAAADAAgAAAABAAAAAAADAAkAAAAAAAAAAAADAAoAAAABAAAAAAAEAAAAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAABAAAAAAAEAAQAAAAAAAAAAAAEAAUAAAABAAAAAAAEAAYAAAAAAAAAAAAEAAcAAAABAAAAAAAEAAgAAAAAAAAAAAAEAAkAAAABAAAAAAAEAAoAAAAAAAAAAAAFAAAAAAABAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAABAAAAAAAFAAMAAAAAAAAAAAAFAAQAAAABAAAAAAAFAAUAAAAAAAAAAAAFAAYAAAABAAAAAAAFAAcAAAAAAAAAAAAFAAgAAAABAAAAAAAFAAkAAAAAAAAAAAAFAAoAAAABAAAAAAAGAAAAAAAAAAAAAAAGAAEAAAABAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAABAAAAAAAGAAQAAAAAAAAAAAAGAAUAAAABAAAAAAAGAAYAAAAAAAAAAAAGAAcAAAABAAAAAAAGAAgAAAAAAAAAAAAGAAkAAAABAAAAAAAGAAoAAAAAAAAAAAAHAAAAAAABAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAABAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAABAAAAAAAHAAUAAAAAAAAAAAAHAAYAAAABAAAAAAAHAAcAAAAAAAAAAAAHAAgAAAABAAAAAAAHAAkAAAAAAAAAAAAHAAoAAAABAAAAAAAIAAAAAAAAAAAAAAAIAAEAAAABAAAAAAAIAAIAAAAAAAAAAAAIAAMAAAABAAAAAAAIAAQAAAAAAAAAAAAIAAUAAAABAAAAAAAIAAYAAAAAAAAAAAAIAAcAAAABAAAAAAAIAAgAAAAAAAAAAAAIAAkAAAABAAAAAAAIAAoAAAAAAAAAAAAJAAAAAAABAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAABAAAAAAAJAAMAAAAAAAAAAAAJAAQAAAABAAAAAAAJAAUAAAAAAAAAAAAJAAYAAAABAAAAAAAJAAcAAAAAAAAAAAAJAAgAAAABAAAAAAAJAAkAAAAAAAAAAAAJAAoAAAABAAAAAAAKAAAAAAAAAAAAAAAKAAEAAAABAAAAAAAKAAIAAAAAAAAAAAAKAAMAAAABAAAAAAAKAAQAAAAAAAAAAAAKAAUAAAABAAAAAAAKAAYAAAAAAAAAAAAKAAcAAAABAAAAAAAKAAgAAAAAAAAAAAAKAAkAAAABAAAAAAAKAAoAAAAAAAAAAAAEAAEAAAABAAAAAAADAAMAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_dw1s1")
+
+[node name="tail" type="TileMapLayer" parent="." unique_id=1458762580]
+tile_set = SubResource("TileSet_2x2sd")
+occlusion_enabled = false
+collision_enabled = false
+
+[node name="Timer" type="Timer" parent="." unique_id=1864590214]
+wait_time = 0.256
+autostart = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=6106060]
+position = Vector2(202, 183)
+scale = Vector2(-113.28558, 2.3069928)
+
+[node name="apple" type="AnimatedSprite2D" parent="." unique_id=954655911]
+position = Vector2(17, 17)
+sprite_frames = SubResource("SpriteFrames_2x2sd")
+
+[node name="head" type="AnimatedSprite2D" parent="." unique_id=258735687]
+position = Vector2(17, 17)
+sprite_frames = SubResource("SpriteFrames_olj5u")
+
+[node name="Label" type="Label" parent="." unique_id=2544877]
+offset_left = -362.0
+offset_top = -130.0
+offset_right = 131.0
+offset_bottom = -14.0
+theme_override_font_sizes/font_size = 50
+text = "Player Score: 0"
+
+[node name="game_over" type="Label" parent="." unique_id=2046798108]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -179.0
+offset_top = 66.0
+offset_right = 509.0
+offset_bottom = 231.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 120
+text = "GAME OVER"
+
+[node name="press_indicator" type="Label" parent="game_over" unique_id=1509826749]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 127.0
+offset_right = 689.0
+offset_bottom = 210.0
+theme_override_constants/outline_size = 17
+theme_override_font_sizes/font_size = 60
+text = "Press any key to restart"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

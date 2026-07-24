@@ -83,7 +83,7 @@ sources/0 = SubResource("TileSetAtlasSource_q6r6c")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0e48y"]
 noise_type = 3
-frequency = 0.1047
+frequency = 0.0523
 offset = Vector3(-406.78, 0, 0)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_epypp"]
@@ -150,4 +150,9 @@ position = Vector2(5.75, -6)
 shape = SubResource("RectangleShape2D_0e48y")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1715089270]
-zoom = Vector2(0.25, 0.25)
+
+[node name="dash_timer" type="Timer" parent="CharacterBody2D" unique_id=161420467]
+wait_time = 1.4549999999999998
+one_shot = true
+
+[connection signal="timeout" from="CharacterBody2D/dash_timer" to="CharacterBody2D" method="_on_dash_timer_timeout"]

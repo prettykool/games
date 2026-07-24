@@ -15,23 +15,34 @@ enum player_action_states {
 	SHOOTING,
 }
 
+enum attack_types {
+	BASIC,
+	MAGIC,
+	SPECIAL
+}
+
 var max_health = 3
 var player_movement_state: player_movement_states
 var sp_score: float = 0.00
 var sp_special: float = 100
 var level = 1
 var double_jump_enabled = true
+var max_jumps: int = 1
+var jumps: int = 0
+var dash_velocity: float = SPEED * 4.0
+var can_dash = true
 
-func basic() -> void:
+signal on_just_dashed()
+
+func do_basic() -> void:
 	pass
 
-func elemental() -> void:
+func do_elemental() -> void:
 	pass
 	
-func special() -> void:
+func do_special() -> void:
 	if sp_score != sp_special:
 		return;
-	pass
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -39,15 +50,25 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") && jumps < max_jumps:
 		velocity.y = JUMP_VELOCITY
+		jumps += 1
 
 	player_movement_state = player_movement_states.IDLE
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+	if is_on_floor():
+		jumps = 0
+
 	var direction := Input.get_axis("left", "right")
-	if direction:
+	
+	if Input.is_action_just_pressed("shift") && direction:
+		$dash_timer.start()
+	if Input.is_action_just_released("shift") && can_dash == false:
+		$dash_timer.start()
+	
+	if Input.is_action_pressed("shift") && direction && can_dash:
+		velocity.x = dash_velocity * direction
+	elif direction:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -59,3 +80,6 @@ func _physics_process(delta: float) -> void:
 		$Sprite2D.rotate(0.3)
 
 	move_and_slide()
+	
+func _on_dash_timer_timeout() -> void:
+	can_dash = !can_dash

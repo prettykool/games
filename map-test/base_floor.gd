@@ -19,7 +19,6 @@ func noise_norm(f: float): return int(clamp(f*10, -1, 1)) # 100% bullshit
 func draw_angles(current_cell, previous_cell):
 	if current_cell == Vector2i(0,0): return
 	if current_cell.y > previous_cell.y:
-		# atlas = get_cell_atlas_coords(Vector2i(previous_cell.x-1
 		set_cell(
 			Vector2i(previous_cell.x, previous_cell.y), 
 			0, 

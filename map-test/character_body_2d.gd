@@ -31,8 +31,10 @@ var max_jumps: int = 1
 var jumps: int = 0
 var dash_velocity: float = SPEED * 4.0
 var can_dash = true
+var dash_time: float = 1.0
+var dash_cooldown: float = 1.5
 
-signal on_just_dashed()
+signal just_dashed()
 
 func do_basic() -> void:
 	pass
@@ -44,12 +46,16 @@ func do_special() -> void:
 	if sp_score != sp_special:
 		return;
 
+func _ready() -> void: 
+	# $dash_timer.wait_time = dash_time
+	# $dash_cooldown_timer.wait_time = dash_cooldown
+	pass
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Handle jump.
 	if Input.is_action_just_pressed("jump") && jumps < max_jumps:
 		velocity.y = JUMP_VELOCITY
 		jumps += 1
@@ -60,10 +66,7 @@ func _physics_process(delta: float) -> void:
 		jumps = 0
 
 	var direction := Input.get_axis("left", "right")
-	
 	if Input.is_action_just_pressed("shift") && direction:
-		$dash_timer.start()
-	if Input.is_action_just_released("shift") && can_dash == false:
 		$dash_timer.start()
 	
 	if Input.is_action_pressed("shift") && direction && can_dash:
@@ -81,5 +84,10 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
+# HERE BE HIDEOUS GARBAGE
 func _on_dash_timer_timeout() -> void:
-	can_dash = !can_dash
+	can_dash = false
+	$dash_cooldown_timer.start()
+	
+func _on_dash_cooldown_timer_timeout() -> void:
+	can_dash = true
